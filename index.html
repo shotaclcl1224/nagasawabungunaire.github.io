@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナガサワ文具センター | 名入れギフト</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 0.2em;
+            font-size: 1.2rem;
+            margin-left: 2rem;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e6e0d8;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        .logo a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 28px;
+            height: 20px;
+            position: relative;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: #333;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle span:nth-child(1) {
+            top: 0;
+        }
+        
+        .menu-toggle span:nth-child(2) {
+            top: 9px;
+        }
+        
+        .menu-toggle span:nth-child(3) {
+            top: 18px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            background-color: #f8f5f2;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 65%;
+            height: 100%;
+            background-image: url('/api/placeholder/800/600');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 50%;
+            margin-left: auto;
+            padding: 4rem;
+            background-color: rgba(248, 245, 242, 0.9);
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .hero-title-en {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 2;
+        }
+        
+        /* Service Section */
+        .service {
+            padding: 6rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: #333;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .service-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .service-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background-color: #e6e0d8;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-item:hover .service-image img {
+            transform: scale(1.05);
+        }
+        
+        .service-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .service-description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background-color: #f0ebe5;
+        }
+        
+        .features-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f8f5f2;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        /* Case Studies Section */
+        .case-studies {
+            padding: 6rem 0;
+        }
+        
+        .case-slider {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+        }
+        
+        .case-item {
+            flex: 0 0 calc(33.333% - 1.5rem);
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .case-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background-color: #e6e0d8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .case-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .case-description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background-color: #e6e0d8;
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-description {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background-color: #a13030;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .contact-button:hover {
+            background-color: #8c2828;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            background-color: #333;
+            color: #f8f5f2;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-logo {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .footer-links-column h3 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .footer-links-list {
+            list-style: none;
+        }
+        
+        .footer-links-list li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links-list a {
+            color: #f8f5f2;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links-list a:hover {
+            opacity: 0.7;
+        }
+        
+        .footer-copyright {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(248, 245, 242, 0.2);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        /* Category Section */
+        .categories {
+            padding: 6rem 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #e6e0d8;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Flow Section */
+        .flow {
+            padding: 6rem 0;
+            background-color: #f0ebe5;
+        }
+        
+        .flow-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .flow-step {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        
+        .flow-step:not(:last-child):after {
+            content: "";
+            position: absolute;
+            left: 32px;
+            bottom: 0;
+            width: 1px;
+            height: 2rem;
+            background-color: #333;
+        }
+        
+        .flow-step-number {
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #a13030;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 50%;
+        }
+        
+        .flow-step-content {
+            flex-grow: 1;
+        }
+        
+        .flow-step-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .flow-step-description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-image {
+                width: 50%;
+            }
+            
+            .hero-content {
+                width: 60%;
+                padding: 3rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                flex-direction: column;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 100%;
+                height: 40vh;
+            }
+            
+            .hero-content {
+                width: 100%;
+                margin: 0;
+                padding: 3rem 1.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .case-item {
+                flex: 0 0 calc(100% - 2rem);
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <div class="logo">
+            <a href="#">NAGASAWA<br><span style="font-size: 0.8rem;">ナガサワ文具センター</span></a>
+        </div>
+        <button class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image">
+            <!-- 背景画像 -->
+        </div>
+        <div class="hero-content">
+            <h3 class="hero-title-en">ナガサワ文具センターの名入れギフト</h3>
+            <h1 class="hero-title">想いを伝える、<br>世界にひとつの贈りもの。</h1>
+            <p class="hero-subtitle">
+                ナガサワ文具センターが贈る、名入れギフト・ノベルティサービス。<br>
+                文具専門店ならではの調達力と確かな品質で、個人様から法人様まで、小ロットから対応いたします。
+            </p>
+        </div>
+    </section>
+
+    <section class="service">
+        <h2 class="section-title">サービス内容</h2>
+        <div class="service-grid">
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="/api/placeholder/600/450" alt="名入れギフト">
+                </div>
+                <h3 class="service-name">企業向け名入れギフト</h3>
+                <p class="service-description">
+                    周年記念や表彰品など、大切な方へのギフトに。高級筆記具からオリジナルノートまで、幅広いアイテムに企業名やメッセージを入れることができます。小ロットから対応可能で、特別感のある贈り物をお作りします。
+                </p>
+            </div>
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="/api/placeholder/600/450" alt="オリジナルノベルティ">
+                </div>
+                <h3 class="service-name">オリジナルノベルティ</h3>
+                <p class="service-description">
+                    展示会やキャンペーンなどで活用できるノベルティグッズを製作。文具専門店ならではの視点で、実用性と訴求力を兼ね備えたアイテムをご提案。SDGs対応素材など、時代のニーズに合わせた商品開発も可能です。
+                </p>
+            </div>
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="/api/placeholder/600/450" alt="小ロットOEM・ODM">
+                </div>
+                <h3 class="service-name">小ロットOEM・ODM</h3>
+                <p class="service-description">
+                    ナガサワ文具センターの工場ネットワークを活かした小ロットでのオリジナル商品製作。100個からのOEM生産や、企画から製造までトータルでサポートするODMサービスを展開しています。
+                </p>
+            </div>
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="/api/placeholder/600/450" alt="個人向け名入れギフト">
+                </div>
+                <h3 class="service-name">個人向け名入れギフト</h3>
+                <p class="service-description">
+                    入学・就職祝いや記念日など、特別な日の贈り物に。1個からオーダー可能な名入れサービスで、世界に一つだけのギフトをお作りします。ラッピングサービスも充実しており、贈る場面に合わせてご提案します。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">ナガサワ文具センターの強み</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">文具専門店の調達力</h3>
+                    <p class="feature-description">
+                        創業以来培ってきた国内外メーカーとの取引実績により、多彩な文具・雑貨アイテムを調達可能。幅広い選択肢からニーズに合った商品をご提案します。
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">小ロット・短納期対応</h3>
+                    <p class="feature-description">
+                        工場ネットワークを駆使し、最小10個からのオーダーに対応。一部商品は工場内の加工設備により最短3営業日での名入れ納品が可能です。
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="feature-title">SDGs対応素材</h3>
+                    <p class="feature-description">
+                        再生PET素材のノートやFSC認証紙を使用した文具など、環境に配慮した素材を積極的に取り入れています。企業のCSR活動にも貢献します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <h2 class="section-title">商品カテゴリー</h2>
+        <div class="categories-grid">
+            <a href="#" class="category-item">
+                <div class="category-image">
+                    <img src="/api/placeholder/300/300" alt="筆記具">
+                </div>
+                <h3 class="category-name">筆記具</h3>
+                <p class="category-description">ボールペン、万年筆、シャープペンシルなど</p>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-image">
+                    <img src="/api/placeholder/300/300" alt="ノート・メモ帳">
+                </div>
+                <h3 class="category-name">ノート・メモ帳</h3>
+                <p class="category-description">オリジナルノート、メモパッド、手帳など</p>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-image">
+                    <img src="/api/placeholder/300/300" alt="革小物">
+                </div>
+                <h3 class="category-name">革小物</h3>
+                <p class="category-description">ペンケース、カードケース、ブックカバーなど</p>
+            </a>
+            <a href="#" class="category-item">
+                <div class="category-image">
+                    <img src="/api/placeholder/300/300" alt="デスクアクセサリー">
+                </div>
+                <h3 class="category-name">デスクアクセサリー</h3>
+                <p class="category-description">クリップ、ブックエンド、ペントレイなど</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="case-studies">
+        <h2 class="section-title">導入事例</h2>
+        <div class="case-slider">
+            <div class="case-item">
+                <div class="case-image">
+                    <img src="/api/placeholder/400/300" alt="事例1">
+                </div>
+                <h3 class="case-title">A社 創立20周年記念品</h3>
+                <p class="case-description">
+                    社員全員に配布する記念品として、オリジナルデザインの多機能ペンを200個製作。会社ロゴと記念日を刻印し、特製桐箱に入れてお届けしました。
+                </p>
+            </div>
+            <div class="case-item">
+                <div class="case-image">
+                    <img src="/api/placeholder/400/300" alt="事例2">
+                </div>
+                <h3 class="case-title">B社 展示会ノベルティ</h3>
+                <p class="case-description">
+                    展示会での配布用に、再生PET素材を使用したエコノートを500個製作。企業カラーに合わせたカバーデザインで、環境への取り組みをアピールしました。
+                </p>
+            </div>
+            <div class="case-item">
+                <div class="case-image">
+                    <img src="/api/placeholder/400/300" alt="事例3">
+                </div>
+                <h3 class="case-title">C大学 卒業記念品</h3>
+                <p class="case-description">
+                    卒業生への贈り物として、大学名と卒業年を刻印した高級万年筆を150個製作。一人ひとりの名前を入れたメッセージカードを添えてお届けしました。
+                </p>
+            </div>
+            <div class="case-item">
+                <div class="case-image">
+                    <img src="/api/placeholder/400/300" alt="事例4">
+                </div>
+                <h3 class="case-title">D社 取引先ギフト</h3>
+                <p class="case-description">
+                    お中元として、オリジナルデザインのレターセットと名入れボールペンのセットを50セット製作。高級感のある和紙を使用し、特別感を演出しました。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="flow">
+        <h2 class="section-title">ご注文の流れ</h2>
+        <div class="flow-container">
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="flow-step-number">1</div>
+                    <div class="flow-step-content">
+                        <h3 class="flow-step-title">お問い合わせ・ご相談</h3>
+                        <p class="flow-step-description">
+                            ウェブサイトのお問い合わせフォームまたはお電話にて、ご希望の商品や数量、納期などをお知らせください。ご要望に合わせて最適な商品をご提案いたします。
+                        </p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">2</div>
+                    <div class="flow-step-content">
+                        <h3 class="flow-step-title">お見積り・サンプル確認</h3>
+                        <p class="flow-step-description">
+                            ご要望に基づいてお見積りを作成。必要に応じてサンプルをご用意し、実際の商品をご確認いただけます。名入れ位置やデザインについてもご相談に応じます。
+                        </p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">3</div>
+                    <div class="flow-step-content">
+                        <h3 class="flow-step-title">ご注文・データ入稿</h3>
+                        <p class="flow-step-description">
+                            お見積りにご納得いただけましたら、正式なご注文手続きを行います。名入れ用のロゴデータや文字情報をご入稿いただきます。データ作成のサポートも可能です。
+                        </p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">4</div>
+                    <div class="flow-step-content">
+                        <h3 class="flow-step-title">製作・名入れ加工</h3>
+                        <p class="flow-step-description">
+                            ご注文内容に基づき、商品の製作・名入れ加工を行います。製作過程でのご質問や進捗確認にも随時対応いたします。品質管理を徹底し、確かな仕上がりをお約束します。
+                        </p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">5</div>
+                    <div class="flow-step-content">
+                        <h3 class="flow-step-title">検品・納品</h3>
+                        <p class="flow-step-description">
+                            完成した商品は厳密に検品を行った後、ご指定の場所へお届けします。ラッピングや個別包装など、納品形態のご要望にも対応いたします。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2 class="contact-title">お問い合わせ</h2>
+        <p class="contact-description">
+            名入れギフトやノベルティ製作についてのご質問・ご相談は、お気軽にお問い合わせください。<br>
+            専任スタッフが丁寧にご対応いたします。
+        </p>
+        <a href="#" class="contact-button">お問い合わせはこちら</a>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">NAGASAWA</div>
+                    <p>ナガサワ文具センター<br>
+                    〒650-0021<br>
+                    兵庫県神戸市中央区三宮町1-8-1<br>
+                    TEL
